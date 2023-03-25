@@ -1,0 +1,267 @@
+<html>
+<head>
+<title>Employee Management</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" 
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script
+   src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script
+   src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+   <script
+   src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <link rel="stylesheet"
+   href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1"/build/css/alertify.min.css" />
+    <link rel="stylesheet"
+   href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1"/build/css/themes/default.min.css" />
+    <link rel="stylesheet"
+   href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1"/build/css/themes/semantic.min.css" />
+   
+   <link rel="stylesheet"
+   href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1"/build/css/alertify.rtl.min.css" />
+    <link rel="stylesheet"
+   href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1"/build/css/themes/default.rtl.min.css" />
+    <link rel="stylesheet"
+   href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1"/build/css/themes/semantic.rtl.min.css" />
+   
+  <script>
+  function saveEmployee() {
+	    if (!validateRegistration()) {
+	        var inputPayload = {
+	            Firstname: $("#firstname").val(),
+	            Lastname: $("#lastname").val(),
+	            email: $("#emailid").val(),
+	            contact: $("#contact").val(),
+	            salary: $("#salary").val(),
+	            age: $("#age").val(),
+	            username: $("#username").val(),
+	            password: $("#password").val(),
+	            gender: $("#gender").val(),
+	            Department: $("#deptId").val(),
+	            address: $("#address").val(),
+	        };
+	        var inputPayloadString = JSON.stringify(inputPayload);
+	        jQuery.ajax({
+	            type: "POST",
+	            cache: true,
+	            async: false,
+	            contentType: "application/json",
+	            datatype: "json",
+	            url: "http://localhost:9000/employee",
+	            data: inputPayloadString,
+	            success: function (data) {
+	                clearAllFormData();
+	                alertify.alert("Confirmation", "Successfully Created!!", function () {});
+	            },
+	            error() {
+	                clearAllFormData();
+	                alertify.alert("Confirmation", "Successfully Created!!", function () {});
+	            },
+	        });
+	    }
+	}
+	function clearAllFormData() {
+	    $("#firstname").val("");
+	    $("#lastname").val("");
+	    $("#emailid").val("");
+	    $("#contact").val("");
+	    $("#salary").val("");
+	    $("#age").val("");
+	    $("#username").val("");
+	    $("#password").val("");
+	    $("#gender").val("");
+	    $("#deptId").val("");
+	    $("#address").val("");
+	}
+	function validateRegistration() {
+	    var isValidationFailed = false;
+	    if ($("#firstname").val() == "") {
+	        document.getElementById("firstNameSpanId").style.display = "block";
+	        isValidationFailed = true;
+	    } else {
+	        document.getElementById("firstNameSpanId").style.display = "none";
+	    }
+	    if ($("#lastname").val() == "") {
+	        document.getElementById("lastname").style.display = "block";
+	        isValidationFailed = true;
+	    } else {
+	        document.getElementById("lastname").style.display = "none";
+	    }
+	    if ($("#emailid").val() == "") {
+	        document.getElementById("emailid").style.display = "block";
+	        isValidationFailed = true;
+	    } else {
+	        document.getElementById("emailid").style.display = "none";
+	    }
+	    if ($("#contact").val() == "") {
+	        document.getElementById("contactSpanId").style.display = "block";
+	        isValidationFailed = true;
+	    } else {
+	        document.getElementById("contactSpanId").style.display = "none";
+	    }
+	    if ($("#salary").val() == "") {
+	        document.getElementById("salary").style.display = "block";
+	        isValidationFailed = true;
+	    } else {
+	        document.getElementById("salary").style.display = "none";
+	    }
+	    if ($("#age").val() == "") {
+	        document.getElementById("age").style.display = "block";
+	        isValidationFailed = true;
+	    } else {
+	        document.getElementById("age").style.display = "none";
+	    }
+	    if ($("#username").val() == "") {
+	        document.getElementById("usernameSpanId").style.display = "block";
+	        isValidationFailed = true;
+	    } else {
+	        document.getElementById("usernameSpanId").style.display = "none";
+	    }
+	    if ($("#password").val() == "") {
+	        document.getElementById("passwordSpanId").style.display = "block";
+	        isValidationFailed = true;
+	    } else {
+	        document.getElementById("passwordSpanId").style.display = "none";
+	    }
+	    if ($("#gender").val() == "") {
+	        document.getElementById("genderSpanId").style.display = "block";
+	        isValidationFailed = true;
+	    } else {
+	        document.getElementById("genderSpanId").style.display = "none";
+	    }
+	    if ($("#deptId").val() == "") {
+	        document.getElementById("deptId").style.display = "block";
+	        isValidationFailed = true;
+	    } else {
+	        document.getElementById("deptId").style.display = "none";
+	    }
+	    if ($("#address").val() == "") {
+	        document.getElementById("address").style.display = "block";
+	        isValidationFailed = true;
+	    } else {
+	        document.getElementById("address").style.display = "none";
+	    }
+	    return isValidationFailed;
+	}
+
+   
+   </script>
+  
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">  
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="/">Home</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="container">
+<div class="panel panel-primary">
+<div class="panel-heading">
+<i>New Employee Registration</i></div>
+ </div>
+
+   <div class="panel-body">
+
+  <div class="row">
+  <div class="col-sm-4">
+  <div class="form-group">
+    <label for="email">First Name:<span style="color:red"><b>*</b></span></label>
+    <input type="text" class="form-control" id="firstname" 
+    placeholder= "please enter first name">
+    <span style="color:red;display:none" id="firstNameSpanId">Please enter first name</span>
+  </div>
+  </div>
+  <div class="col-sm-4">
+  <div class="form-group">
+    <label for="email">Last Name:</label><input type="text"
+     class="form-control" id="lastname" 
+     placeholder= "please enter last name">
+  </div>
+  </div>
+  <div class="col-sm-4">
+  <div class="form-group">
+    <label for="email">Age:</label><input type="number" 
+    class="form-control" id="age" placeholder= "please enter age">
+  </div>
+  </div>
+</div>
+  
+   <div class="row">
+  <div class="col-sm-4">
+  <div class="form-group">
+    <label for="email">email:</label><input type="email" 
+    class="form-control" id="emailid" placeholder= "please enter email">
+  </div>
+  </div>
+  <div class="col-sm-4">
+  <div class="form-group">
+    <label for="email">contact:<span style="color:red"><b>*</b></span></label><input type="number"
+     class="form-control" id="contact" placeholder= "please enter contact">
+     <span style="color:red;display:none" id="contactSpanId">Please enter contact</span>
+  </div>
+  </div>
+  <div class="col-sm-4">
+  <div class="form-group">
+    <label for="email">salary:</label><input type="number" 
+    class="form-control" id="salary" placeholder= "please enter salary">
+  </div>
+  </div>
+</div>
+   <div class="row">
+  <div class="col-sm-4">
+  <div class="form-group">
+    <label for="email">user_name:<span style="color:red"><b>*</b></span></label><input type="text" 
+    class="form-control" id="username" placeholder= "please enter username">
+    <span style="color:red;display:none" id="usernameSpanId">Please enter username</span>
+  </div>
+  </div>
+  <div class="col-sm-4">
+  <div class="form-group">
+    <label for="email">password:<span style="color:red"><b>*</b></span></label><input type="text"
+     class="form-control" id="password" placeholder= "please enter password">
+     <span style="color:red;display:none" id="passwordSpanId">Please enter password</span>
+  </div>
+  </div>
+  <div class="col-sm-4">
+  <div class="form-group">
+    <label for="email">Department:</label>
+    <select class="form-control" id="deptId">
+    <option value="">select department</option>
+    <option value="Engineering">Engineering</option>
+     <option value="HR">HR</option>
+      <option value="loan">loan</option>
+       <option value="Accountant">Accountant</option>
+        <option value="sales">sales</option>
+        </select>
+    </div>
+  </div>
+  </div>
+   <div class="row">
+  <div class="col-sm-12">
+   <label for="Gender">Gender:<span style="color:red"><b>*</b></span></label><label class="radio-inline">
+   <input type="radio" name="gender">female</label>
+   <label class="radio-inline">
+   <input type="radio" name="gender">male
+   </label>
+</div>
+<span style="color:red;display:none" id="genderSpanId">Please enter gender</span>
+ </div>
+   <div class="row">
+  <div class="col-sm-12">
+   <label for="email">Address:</label>
+  <textarea rows="5" cols="140" class="form-control" id="address"></textarea>
+</div>
+ </div>
+  <div class="panel-footer" >
+  <button type="submit" class="btn btn-primary" 
+  onclick="saveEmployee()" >Submit</button>
+  </div>
+  
+</div>
+</div>
+</body>
+</html>
